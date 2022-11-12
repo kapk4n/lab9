@@ -1,2 +1,10 @@
 <h1>Example#input</h1>
 <p>Find me in app/views/example/input.html.erb</p>
+
+
+<%= form_with url: "/example/show", method: :get do |form| %>
+  <%= form.label :myParam, "Введите число" %>
+  <%= form.number_field :myParam %>
+  <%= form.submit "Рассчитать корень" %>
+<% end %>
+

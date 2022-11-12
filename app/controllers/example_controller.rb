@@ -3,5 +3,6 @@ class ExampleController < ApplicationController
   end
 
   def show
+    @digit = params[:myParam]
   end
 end
