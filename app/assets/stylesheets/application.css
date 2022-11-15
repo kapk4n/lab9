@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+ th { 
+     background: #ccc; /* Цвет фона ячеек */
+     padding: 5px; /* Поля вокруг содержимого ячеек */
+     border: 1px solid black; /* Граница вокруг ячеек */
+    }
+    td { 
+     padding: 5px; /* Поля вокруг содержимого ячеек */
+     border: 1px solid black; /* Граница вокруг ячеек */
+    }
+ 
