@@ -1,4 +1,4 @@
-<%= form_with url: "/example/show", method: :get do |form| %>
+<%= form_with url: "/example/show" do |form| %>
   <%= form.label :myParam, "Введите число" %>
   <%= form.number_field :myParam, value: 16 %>
   <%= form.submit "Рассчитать корень" %>
@@ -9,4 +9,5 @@
     <%= flash[:alert] %>
   </div>
 <% end %>
-
+<br>
+<div id="result_container" ></div>
