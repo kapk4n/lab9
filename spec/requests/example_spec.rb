@@ -49,43 +49,43 @@ RSpec.describe 'Examples', type: :request do
     # end
 
     context 'norm' do
-      subject { post example_show_path, params: { n: 16 }, xhr: true }
+      subject { post example_show_path, params: { myParam: 16 }, xhr: true }
 
       it 'should return http success' do
         subject
-        expect(response).to have_http_status(:success)
+        html = Nokogiri::HTML(response.body)
+        div = html.search('td').last.text
+        expect(div.to_f).to be_within(8 - 0.001).of(8 + 0.001)
       end
 
       it 'should calculate correct result' do
         subject
-        expect(assigns(:result)).to eq([1, 2, 3, 11, 22, 101, 111, 121])
+        html = Nokogiri::HTML(response.body)
+        div = html.search('td').last.text
+        expect(div.to_f).to be_within(8 - 0.001).of(8 + 0.001)
       end
     end
   end
 
-  describe 'Capybara test case', type: :feature do
-    context 'Capybara test case' do
-      it 'body should contain header' do
-        visit root_path
-        expect(page).to have_content 'Example'
-      end
-    end
-  end
+  # describe 'Capybara test case', type: :feature do
+  #   context 'Capybara test case' do
+  #     it 'body should contain header' do
+  #       visit root_path
+  #       expect(page).to have_content 'example'
+  #     end
+  #   end
+  # end
 
   describe 'Selenium WebDriver open root_path and' do
-    # before(:each) do
-    #   @driver = Selenium::WebDriver.for :firefox
-    #   @base_url = 'https://www.google.com/'
-    #   @accept_next_alert = true
-    #   @driver.manage.timeouts.implicit_wait = 30
-    #   @verification_errors = []
-    #   # @vars = {}
-    # end
+    before(:each) do
+      @driver = Selenium::WebDriver.for :chrome
+      @base_url = 'https://www.google.com/'
+      # @vars = {}
+    end
 
-    # after(:each) do
-    #   @driver.quit
-    #   expect(@verification_errors.size).to be_zero
-    # end
+    after(:each) do
+      @driver.quit
+    end
 
     # it 'send n = 1568l body should contain error' do
     #   @driver.get 'http://localhost:3000/'
@@ -114,15 +114,15 @@ RSpec.describe 'Examples', type: :request do
     #   expect(@driver.find_element(:css, '.row:nth-child(13) > .col-6').text).to eq('1234321')
     # end
 
-    # it 'n = 145 body should contain 14641' do
-    #   @driver.get('http://localhost:3000/')
-    #   @driver.find_element(:id, 'myParam').click
-    #   @driver.find_element(:id, 'myParam').clear
-    #   @driver.find_element(:id, 'myParam').send_keys('16')
-    #   @driver.find_element(:name, 'commit').click
+    it 'n = 145 body should contain 14641' do
+      @driver.get('http://localhost:3000/')
+      @driver.find_element(:id, 'myParam').click
+      @driver.find_element(:id, 'myParam').clear
+      @driver.find_element(:id, 'myParam').send_keys('64')
+      @driver.find_element(:name, 'commit').click
 
-    #   expect(@driver.find_element(:xpath, '//div[@id=\'result\']/div/div[9]/div[3]').text).to eq('14641')
-    # end
+      expect(@driver.find_element(:xpath, '//*[@id="result_container"]/div/table/tbody/tr[5]/td[2]').to_f).to be_within(8 - 0.001).of(8 + 0.001)
+    end
 
     # it 'After errors body should contain result' do
     #   @driver.get('http://localhost:3000/')
