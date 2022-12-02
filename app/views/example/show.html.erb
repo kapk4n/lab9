@@ -1,10 +1,6 @@
 <div>
   <table class="table">
-  <% a = @digit.to_f %>
 
-<% @x0 = a %>
-<% @i=0 %>
-<% @x1 = @x0 + 1  %>
     <thead>
       <tr>
         <th>№</th>
@@ -12,16 +8,12 @@
       </tr>
     </thead>
     <tbody>
-      <% while ((@x1**2 - a) / a) >= 0.001 %>
-        <%    extra = @x1 %>
-        <%    @x0 = extra %>
-        <%     @i+=1%>
-        <%    @x1 = 0.5 * (@x0 + a / @x0) %>
-        <tr>
-          <td><%= @i %></td>
-          <td><%= @x1 %></td>
-        </tr>
-      <% end %>
+        <% @result.each_with_index do |el, idx| %>
+          <tr>
+            <td> <%= idx %>.</td>
+            <td> <%= el %> </td>
+          </tr>
+        <% end %>
       </tr>
     </tbody>
   </table>

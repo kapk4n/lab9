@@ -1,6 +1,12 @@
 <%= form_with url: "/example/show", method: :get do |form| %>
   <%= form.label :myParam, "Введите число" %>
-  <%= form.number_field :myParam %>
+  <%= form.number_field :myParam, value: 16 %>
   <%= form.submit "Рассчитать корень" %>
+<% end %>
+
+<% unless flash[:alert].nil?%>
+  <div class="alert alert-warning mt-4" role="alert">
+    <%= flash[:alert] %>
+  </div>
 <% end %>
 
