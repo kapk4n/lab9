@@ -7,6 +7,7 @@ class ExampleController < ApplicationController
   def input; end
 
   def show
+    @i = 0
     @result = vichsl(params[:myParam].to_f)
   end
 

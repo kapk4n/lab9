@@ -49,7 +49,7 @@ RSpec.describe 'Examples', type: :request do
       @driver.quit
     end
 
-    it 'n = 145 body should contain 14641' do
+    it 'sqrt 64 ' do
       @driver.get('http://localhost:3000/')
       @driver.find_element(:id, 'myParam').click
       @driver.find_element(:id, 'myParam').clear
@@ -57,6 +57,16 @@ RSpec.describe 'Examples', type: :request do
       @driver.find_element(:name, 'commit').click
 
       expect(@driver.find_element(:xpath, '/html/body/div/div/table/tbody/tr[6]/td[2]').text.to_f).to be_within(8 - 0.001).of(8 + 0.001)
+    end
+
+    it 'sqrt 64 ' do
+      @driver.get('http://localhost:3000/')
+      @driver.find_element(:id, 'myParam').click
+      @driver.find_element(:id, 'myParam').clear
+      @driver.find_element(:id, 'myParam').send_keys(64)
+      @driver.find_element(:name, 'commit').click
+
+      expect(@driver.find_element(:xpath, '//*[@id="col6"]').text.to_f).to be_within(8 - 0.001).of(8 + 0.001)
     end
   end
 end

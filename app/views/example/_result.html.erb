@@ -1,5 +1,3 @@
-<div id="result_container">
-
 <div>
   <table class="table">
 
@@ -13,7 +11,7 @@
         <% @result.each_with_index do |el, idx| %>
           <tr>
             <td> <%= idx %>.</td>
-            <td> <%= el %> </td>
+            <td id="col<%=@i+=1%>"> <%= el %> </td>
           </tr>
         <% end %>
       </tr>
@@ -21,4 +19,3 @@
   </table>
 </div>
 
-</div>
