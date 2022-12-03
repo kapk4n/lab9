@@ -78,7 +78,7 @@ RSpec.describe 'Examples', type: :request do
 
   describe 'Selenium WebDriver open root_path and' do
     before(:each) do
-      @driver = Selenium::WebDriver.for :chrome
+      @driver = Selenium::WebDriver.for :firefox
       @base_url = 'https://www.google.com/'
       # @vars = {}
     end
