@@ -1,0 +1,15 @@
+current directory: /home/ivan/Рабочий стол/lab12/lab9/vendor/bundle/ruby/3.0.0/gems/bootsnap-1.13.0/ext/bootsnap
+/usr/bin/ruby3.0 -I /usr/lib/ruby/vendor_ruby -r ./siteconf20221205-6226-ees8wj.rb extconf.rb
+creating Makefile
+
+current directory: /home/ivan/Рабочий стол/lab12/lab9/vendor/bundle/ruby/3.0.0/gems/bootsnap-1.13.0/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: /home/ivan/Рабочий стол/lab12/lab9/vendor/bundle/ruby/3.0.0/gems/bootsnap-1.13.0/ext/bootsnap
+make DESTDIR\=
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.so
+
+current directory: /home/ivan/Рабочий стол/lab12/lab9/vendor/bundle/ruby/3.0.0/gems/bootsnap-1.13.0/ext/bootsnap
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 bootsnap.so ./.gem.20221205-6226-vpq98l/bootsnap
