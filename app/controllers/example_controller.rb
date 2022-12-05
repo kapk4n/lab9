@@ -3,6 +3,7 @@
 # created class
 class ExampleController < ApplicationController
   before_action :check_par, only: [:show]
+  before_action :require_user_present!
 
   def input; end
 
@@ -29,6 +30,6 @@ class ExampleController < ApplicationController
     return if params[:myParam]&.match(/^[1-9]\d*$/)
 
     flash[:alert] = 'no match'
-    redirect_to root_path
+    redirect_to example_input_path
   end
 end
