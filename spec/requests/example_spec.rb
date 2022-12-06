@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'nokogiri'
 
 # rubocop:disable Metrics/BlockLength
-RSpec.describe 'Examples', type: :request do
+RSpec.describe 'Vichsl', type: :request do
   describe 'GET /input' do
     it 'returns http success' do
       get root_path
@@ -12,57 +12,35 @@ RSpec.describe 'Examples', type: :request do
     end
   end
 
-  describe '/input' do
-    context 'path' do
-      it 'should return http success' do
-        get root_path
-        expect(response).to have_http_status(:success)
-      end
+  describe 'GET /show' do
+    it 'returns http success' do
+      get '/example/show'
+      expect(response).to have_http_status(:redirect)
     end
+  end
 
-    describe 'GET job' do
-      it 'renders the jobs view' do
-        get example_show_path, params: { myParam: 25 }
-        expect(response).to render_template('example/show')
-      end
+  describe 'cheacking workable db' do
+    i = rand(1..100)
+    it 'new element adding' do
+      expect(Vichsl.create(digit: i)).not_to be_nil
+      expect(Vichsl.find_by(digit: i)).not_to be_nil
     end
+  end
 
-    describe '/show' do
-      context 'path' do
-        it 'should return http success' do
-          get example_show_path, params: { myParam: 25 }
-          expect(response).to have_http_status(:success)
-        end
-      end
+  describe 'diferent input and output values' do
+    it 'not eq' do
+      i = rand(1..100)
+      t = Vichsl.create(digit: i)
+      t1 = Vichsl.create(digit: i + 1)
+      expect(t1).not_to eq(t)
     end
+  end
+end
 
-    context 'error' do
-      it 'nil par' do
-        get example_show_path
-        expect(response).to have_http_status(302)
-      end
-
-      it 'empty par' do
-        get example_show_path, params: {}
-        expect(response).to have_http_status(302)
-      end
-    end
-
-    context 'norm' do
-      it 'sqrt 25 = 5' do
-        get example_show_path, params: { myParam: 25 }
-        html = Nokogiri::HTML(response.body)
-        div = html.search('td').last.text
-        expect(div.to_f).to be_within(5 - 0.001).of(5 + 0.001)
-      end
-
-      it 'sqrt 64 = 8' do
-        get example_show_path, params: { myParam: 64 }
-        html = Nokogiri::HTML(response.body)
-        div = html.search('td').last.text
-        expect(div.to_f).to be_within(8 - 0.001).of(8 + 0.001)
-      end
-    end
+RSpec.describe 'module testing', type: :model do
+  it 'unique test' do
+    Vichsl.create!(digit: 81)
+    expect { Vichsl.create!(digit: 81) }.to raise_error ActiveRecord::RecordInvalid
   end
 end
 # rubocop:enable Metrics/BlockLength
