@@ -1,7 +1,7 @@
 class Vichsl < ApplicationRecord
   validates_uniqueness_of :digit, message: 'Введено не уникальное значение'
   # validates :input, format: { with: /\A\d+\z/, message: 'Должно быть введено положительное число' }
-  before_save :set_twins
+  before_save :set_sqrts
 
   def jresult
     ActiveSupport::JSON.decode(result)
@@ -9,11 +9,11 @@ class Vichsl < ApplicationRecord
 
   private
 
-  def set_twins
-    self.result = ActiveSupport::JSON.encode(calculate_twins)
+  def set_sqrts
+    self.result = ActiveSupport::JSON.encode(vich_sqrt)
   end
 
-  def calculate_twins
+  def vich_sqrt
     a = []
     @x0 = digit
     @x1 = @x0 + 1
