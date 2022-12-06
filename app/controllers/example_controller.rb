@@ -3,7 +3,7 @@
 # created class
 class ExampleController < ApplicationController
   before_action :check_par, only: [:show]
-  before_action :require_user_present!
+  # before_action :require_user_present!
 
   def input; end
 
