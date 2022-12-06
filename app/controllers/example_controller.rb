@@ -7,23 +7,20 @@ class ExampleController < ApplicationController
   def input; end
 
   def show
-    @result = vichsl(params[:myParam].to_f)
+    if (result1 = Vichsl.find_by(digit: @digit = params[:myParam]))
+      @result1 = result1.jresult
+    else
+      result1 = Vichsl.new(digit: @digit)
+      if result1.save
+        @result1 = result1.jresult
+      else
+        redirect_to root_path, notice: result1.errors.messages[:input][0]
+      end
+    end
   end
 
   private
 
-  def vichsl(dig)
-    @a = []
-    @x0 = dig
-    @x1 = @x0 + 1
-    while ((@x1**2 - dig) / dig) >= 0.001
-      extra = @x1
-      @x0 = extra
-      @x1 = 0.5 * (@x0 + dig / @x0)
-      @a.push(@x1)
-    end
-    @a
-  end
 
   def check_par
     return if params[:myParam]&.match(/^[1-9]\d*$/)
@@ -32,3 +29,24 @@ class ExampleController < ApplicationController
     redirect_to root_path
   end
 end
+
+
+
+# def output
+#   if (result = Twin.find_by_input(@input = params[:inpt]))
+#     @result = result.jresult
+#   else
+#     result = Twin.new(input: @input)
+#     if result.save
+#       @result = result.jresult
+#     else
+#       redirect_to root_path, notice: result.errors.messages[:input][0]
+#     end
+#   end
+# end
+
+# def show_db
+#   # Задание с сериализацией
+#   # Для отрисовки в views/layouts/application.html.erb добавили <html data-turbo='false'>
+#   render xml: Twin.all
+# end
