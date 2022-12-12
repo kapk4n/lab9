@@ -11,12 +11,13 @@
         <% @result.each_with_index do |el, idx| %>
           <tr>
             <td> <%= idx %>.</td>
-            <td> <%= el %> </td>
+            <td> <%= @qwe = el %> </td>
           </tr>
         <% end %>
       </tr>
     </tbody>
   </table>
+  <div id='res'> <%= @qwe %> </div>
 </div>
 
 <%= link_to 'Back', "input" %>

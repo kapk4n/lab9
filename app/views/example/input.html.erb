@@ -1,7 +1,7 @@
 <%= form_with url: "/example/show", method: :get do |form| %>
   <%= form.label :myParam, "Введите число" %>
   <%= form.number_field :myParam, value: 16 %>
-  <%= form.submit "Рассчитать корень" %>
+  <%= form.submit id: 'submit-btn', value: 'Рассчитать корень' %>
 <% end %>
 
 <% unless flash[:alert].nil?%>
