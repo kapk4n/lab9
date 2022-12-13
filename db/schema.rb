@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_13_143255) do
     t.string "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index "\"registration_number\"", name: "index_vichsls_on_registration_number", unique: true
+    t.index ["digit"], name: "index_vichsls_on_digit", unique: true
   end
 
   add_foreign_key "cars", "drivers"

@@ -10,7 +10,7 @@ class ExampleController < ApplicationController
     if (result1 = Vichsl.find_by(digit: @digit = params[:myParam]))
       @result1 = result1.jresult
     else
-      result1 = Vichsl.new(digit: @digit, registration_number: @digit)
+      result1 = Vichsl.new(digit: @digit)
       if result1.save
         @result1 = result1.jresult
       else
