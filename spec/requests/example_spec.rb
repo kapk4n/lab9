@@ -25,18 +25,5 @@ RSpec.describe 'checking func', type: :system do
 
     expect(find('#res').text.to_f).to be_within(5 - 0.001).of(5 + 0.001)
   end
-
-  # def to_path(path)
-  #   visit path
-  #   expect(current_path).to eq session_login_path
-  # end
-
-  # scenario 'Check without register' do
-  #   User.create(username: 'NotHim', password_digest: 'Pass')
-  #   routes = ['/users/1', '/users/1/edit', '/index/output', root_path, '/users']
-  #   routes.each do |path|
-  #     to_path(path)
-  #   end
-  # end
 end
 # rubocop:enable Metrics/BlockLength

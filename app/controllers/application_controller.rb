@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_user_present!
+  def require_user_logged_in!
     redirect_to root_path, alert: "You mast be signeed in to do" if Current.user.nil?
   end
 
