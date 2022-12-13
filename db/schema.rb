@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_06_102300) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_13_143255) do
   create_table "cars", force: :cascade do |t|
     t.string "brand"
     t.string "model"
@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_06_102300) do
     t.string "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index "\"registration_number\"", name: "index_vichsls_on_registration_number", unique: true
   end
 
   add_foreign_key "cars", "drivers"

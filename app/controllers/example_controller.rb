@@ -10,13 +10,17 @@ class ExampleController < ApplicationController
     if (result1 = Vichsl.find_by(digit: @digit = params[:myParam]))
       @result1 = result1.jresult
     else
-      result1 = Vichsl.new(digit: @digit)
+      result1 = Vichsl.new(digit: @digit, registration_number: @digit)
       if result1.save
         @result1 = result1.jresult
       else
         redirect_to root_path, notice: result1.errors.messages[:input][0]
       end
     end
+  end
+
+  def show_db
+    render xml: Vichsl.all
   end
 
   private
@@ -45,8 +49,3 @@ end
 #   end
 # end
 
-# def show_db
-#   # Задание с сериализацией
-#   # Для отрисовки в views/layouts/application.html.erb добавили <html data-turbo='false'>
-#   render xml: Twin.all
-# end

@@ -10,3 +10,6 @@
   </div>
 <% end %>
 
+<%= form_with url: "/example/show_db", id: 'db_form', method: :get do |form| %>
+  <%= form.submit id: 'db_btn',value: "Показать БД" %>
+<% end %>
